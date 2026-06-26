@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3232341220224963512}
-  - component: {fileID: 9085923977378684237}
+  - component: {fileID: 3792806522902574688}
   m_Layer: 0
   m_Name: Creep3
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 2211665068971302960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9085923977378684237
+--- !u!114 &3792806522902574688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +42,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8159391983444404135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f47d7a023632a24e9afd4e8f30c0029, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ced92cc438a314448ae6ddfe72ef36e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationTest
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  moveSpeed: 2
+  rotationSpeed: 5
+  stoppingDistance: 0.2
   anim: {fileID: 3606573191198943615}
 --- !u!1001 &1818276487561856987
 PrefabInstance:
