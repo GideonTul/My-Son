@@ -27,7 +27,7 @@ public class Menu : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("LvlOneCutscene");
+        SceneManager.LoadScene("LvlOne");
     }
     public void Settings()
     {

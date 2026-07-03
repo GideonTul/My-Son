@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
     //    currentMusic.Play();
     //}
 
-    public void PlayMusic(MusicTrack track, float fadeTime = 1.9f)
+    public void PlayMusic(MusicTrack track, float fadeTime = 1.9f, float volume = 1f)
     {
         Debug.Log("PlayMusic called: " + track);
 
@@ -82,10 +82,10 @@ public class AudioManager : MonoBehaviour
         if (musicRoutine != null)
             StopCoroutine(musicRoutine);
 
-        musicRoutine = StartCoroutine(CrossfadeMusic(track, fadeTime));
+        musicRoutine = StartCoroutine(CrossfadeMusic(track, fadeTime, volume));
     }
 
-    private IEnumerator CrossfadeMusic(MusicTrack track, float fadeTime)
+    private IEnumerator CrossfadeMusic(MusicTrack track, float fadeTime, float tvolume)
     {
 
         AudioSource oldSource = currentMusic;
@@ -108,24 +108,24 @@ public class AudioManager : MonoBehaviour
             float lerp = t / fadeTime;
 
             oldSource.volume = Mathf.Lerp(1f, 0f, lerp);
-            newSource.volume = Mathf.Lerp(0f, 1f, lerp);
+            newSource.volume = Mathf.Lerp(0f, tvolume, lerp);
 
             yield return null;
         }
 
         oldSource.Stop();
-        oldSource.volume = 1f;
+        oldSource.volume = tvolume;
 
         currentMusic = newSource;
         nextMusic = oldSource;
 
         if (track.introClip != null && track.loopClip != null)
         {
-            StartCoroutine(WaitForIntro(track));
+            StartCoroutine(WaitForIntro(track, tvolume));
         }
     }
 
-    private IEnumerator WaitForIntro(MusicTrack track)
+    private IEnumerator WaitForIntro(MusicTrack track, float tvolume)
     {
         float crossfadeTime = 0.1f;
 
@@ -153,7 +153,7 @@ public class AudioManager : MonoBehaviour
             float lerp = t / crossfadeTime;
 
             currentMusic.volume = Mathf.Lerp(1f, 0f, lerp);
-            loopSource.volume = Mathf.Lerp(0f, 1f, lerp);
+            loopSource.volume = Mathf.Lerp(0f, tvolume, lerp);
 
             yield return null;
         }
@@ -165,7 +165,7 @@ public class AudioManager : MonoBehaviour
         currentMusic = loopSource;
         nextMusic = old;
 
-        currentMusic.volume = 1f;
+        currentMusic.volume = tvolume;
     }
 
     #region VOICE

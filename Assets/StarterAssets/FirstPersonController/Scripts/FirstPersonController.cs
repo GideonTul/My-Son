@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Rendering;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 #endif
 
 namespace StarterAssets
@@ -11,7 +13,19 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
-		[Header("Player")]
+		[Header("Pause")]
+        [SerializeField] private GameObject pauseMenu;
+        [SerializeField] private GameObject settingsMenu;
+
+        private bool _paused = false;
+
+		[Header("Footsteps")]
+		[SerializeField] private AudioClip[] footstepAudio;
+        [SerializeField] private float stepDistance = 2f;
+
+        private Vector3 lastFootstepPosition;
+
+        [Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
@@ -104,22 +118,38 @@ namespace StarterAssets
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
-
-			// reset our timeouts on start
-			_jumpTimeoutDelta = JumpTimeout;
+			pauseMenu.SetActive(false);
+            settingsMenu.SetActive(false);
+            // reset our timeouts on start
+            _jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 		}
 
 		private void Update()
 		{
-			JumpAndGravity();
+            if (_input.pause != _paused)
+            {
+                if (_paused)
+                    ResumeGame();
+                else
+                    PauseGame();
+
+                return;
+            }
+
+            if (_paused)
+                return;
+            JumpAndGravity();
 			GroundedCheck();
 			Move();
+			HandleFootsteps();
 		}
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+            if (_paused)
+                return;
+            CameraRotation();
 		}
 
 		private void GroundedCheck()
@@ -127,6 +157,7 @@ namespace StarterAssets
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+			
 		}
 
 		private void CameraRotation()
@@ -264,5 +295,88 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
-	}
+
+        private void HandleFootsteps()
+        {
+            if (!Grounded)
+            {
+                lastFootstepPosition = transform.position;
+                return;
+            }
+
+            if (_input.move == Vector2.zero)
+            {
+                lastFootstepPosition = transform.position;
+                return;
+            }
+
+            if (Vector3.Distance(lastFootstepPosition, transform.position) >= stepDistance)
+            {
+                lastFootstepPosition = transform.position;
+
+                AudioClip clip = footstepAudio[Random.Range(0, footstepAudio.Length)];
+                AudioManager.Instance.PlaySFX(clip, 0.12f);
+            }
+        }
+
+        private void PauseGame()
+        {
+            _paused = true;
+
+            Time.timeScale = 0f;
+
+            if (pauseMenu != null)
+                pauseMenu.SetActive(true);
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            _input.cursorLocked = false;
+            _input.look = Vector2.zero;
+            _input.move = Vector2.zero;
+        }
+
+        private void ResumeGame()
+        {
+            _paused = false;
+
+            Time.timeScale = 1f;
+
+			if (pauseMenu != null)
+			{
+				pauseMenu.SetActive(false);
+			}
+
+			if (settingsMenu != null)
+			{
+				settingsMenu.SetActive(false);
+			}
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            _input.cursorLocked = true;
+
+            // Prevent camera jumping
+            _input.look = Vector2.zero;
+        }
+		public void ResumeButton()
+		{
+            if (_paused)
+            {
+                _input.pause = false;
+                ResumeGame();
+            }
+        }
+		public void SettingsButton()
+		{
+			settingsMenu.SetActive(true);
+			pauseMenu.SetActive(false);
+		}
+        public void QuitButton()
+		{
+			SceneManager.LoadScene("MainMenu");
+		}
+
+    }
 }
