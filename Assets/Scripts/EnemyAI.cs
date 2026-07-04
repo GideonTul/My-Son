@@ -4,12 +4,20 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    enum State
+    {
+        Roam, Aggro
+    }
+
+    State currentState;
+
     public Transform[] patrolPoints;
 
     private NavMeshAgent agent;
     public Animator anim;
 
     public AudioClip aggroSound;
+    public AudioClip atkSound;
 
     private GameObject player;
 
@@ -21,6 +29,8 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        currentState = State.Roam;
 
         if (patrolPoints.Length > 0)
         {
@@ -36,8 +46,10 @@ public class EnemyAI : MonoBehaviour
         float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         ControlAggro(distFromPlayer);
 
-        // Update animation
-        anim.SetFloat("Speed", agent.velocity.magnitude);
+        float speed = agent.velocity.magnitude;
+
+        Debug.Log("Enemy Speed: " +  speed);
+        anim.SetFloat("Speed", speed);
 
         // Have we reached the patrol point?
         if (!agent.pathPending &&
@@ -51,14 +63,31 @@ public class EnemyAI : MonoBehaviour
             agent.destination = patrolPoints[currentPoint].position;
         }
     }
-
+    bool atk = false;
     private void ControlAggro(float dist)
     {
-        if (isMad) return;
+        if (dist > 35) { 
+            isMad = false;
+            agent.speed = 1.5f;
+            agent.destination = patrolPoints[currentPoint].position;
+            atk = false;
+        }
+        if (dist < 5 && !atk)
+        {
+            AudioManager.Instance.PlaySFX(atkSound, 0.5f);
+            atk = true;
+        }
 
-        if (dist < 20) { 
+        if (isMad) {
+            agent.destination = player.transform.position;
+            return; 
+        }
+
+        if (dist < 30) { 
             isMad = true;
+            agent.speed = 5f;
             AudioManager.Instance.PlaySFX(aggroSound, 0.5f);
+            agent.destination = player.transform.position;
         }
         else
         {

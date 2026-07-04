@@ -14,9 +14,9 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.26107675, g: 0.30817598, b: 0.24518402, a: 1}
-  m_FogMode: 3
+  m_FogMode: 2
   m_FogDensity: 0.014
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
@@ -430,9 +430,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.13207549, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.3018868, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_PressedColor: {r: 0.13333334, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0.13333334, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 0.13333334, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1276,9 +1276,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.13207549, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.3018868, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_PressedColor: {r: 0.13333334, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0.13333334, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 0.13333334, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1409,9 +1409,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.13207549, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.3018868, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_PressedColor: {r: 0.13333334, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0.13333334, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 0.13333334, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1901,6 +1901,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 307103774941340272, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: m_Speed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3232341220224963512, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 377.4165
@@ -1941,6 +1945,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: atkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 093a5dc60018d476791de718279859f3, type: 3}
     - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: aggroSound
       value: 
