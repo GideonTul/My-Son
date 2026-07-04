@@ -1347,6 +1347,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134759929}
   m_CullTransparentMesh: 1
+--- !u!1 &1178002052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1583781650445957770, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+  m_PrefabInstance: {fileID: 1482111731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1178002055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178002052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb71c68b809ee44392d3de68f897f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationFootstepProxy
 --- !u!1 &1252821496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,7 +1920,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 307103774941340272, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: m_Speed
-      value: 1.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3232341220224963512, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1950,9 +1967,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 093a5dc60018d476791de718279859f3, type: 3}
     - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
-      propertyPath: aggroSound
+      propertyPath: stepDistance
+      value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: footstepVolume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: aggroSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'aggroSound.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 98e09261f3a63460d93dda8792af907d, type: 3}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'aggroSound.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 228a434ca9f954909a9176e45f877eaa, type: 3}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: footstepAudio.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
       value: 
@@ -1965,6 +2002,18 @@ PrefabInstance:
       propertyPath: 'patrolPoints.Array.data[2]'
       value: 
       objectReference: {fileID: 929701742}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'footstepAudio.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d65afb5fe7bb7e41a03b001f5acfbde, type: 3}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'footstepAudio.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 54cd8769272b7ca4c9a1386d106f621d, type: 3}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'footstepAudio.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: eb491a4de6595a246bbef0f211e2bd73, type: 3}
     - target: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: m_Name
       value: Creep3
@@ -1972,7 +2021,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1583781650445957770, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1178002055}
   m_SourcePrefab: {fileID: 100100000, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
 --- !u!1 &1605782425
 GameObject:
@@ -2717,16 +2769,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
+      propertyPath: MoveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1998927563}
+    - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
+      propertyPath: SprintSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       propertyPath: settingsMenu
       value: 
       objectReference: {fileID: 1619152559}
     - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       propertyPath: stepDistance
-      value: 2.5
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       propertyPath: footstepAudio.Array.size

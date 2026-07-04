@@ -4,19 +4,28 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+
+    [Header("Footsteps")]
+    [SerializeField] private AudioClip[] footstepAudio;
+    [SerializeField] private float footstepVolume = 0.2f;
+    private AudioSource footstepSource;
+
+
     enum State
     {
         Roam, Aggro
     }
 
     State currentState;
-
+    [Header("Patrol Points")]
     public Transform[] patrolPoints;
 
     private NavMeshAgent agent;
+    [Header("Animator")]
     public Animator anim;
 
-    public AudioClip aggroSound;
+    [Header("Behavior")]
+    public AudioClip[] aggroSound;
     public AudioClip atkSound;
 
     private GameObject player;
@@ -29,6 +38,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+        footstepSource = GetComponent<AudioSource>();
 
         currentState = State.Roam;
 
@@ -68,7 +78,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (dist > 35) { 
             isMad = false;
-            agent.speed = 1.5f;
+            agent.speed = 5f;
             agent.destination = patrolPoints[currentPoint].position;
             atk = false;
         }
@@ -85,13 +95,23 @@ public class EnemyAI : MonoBehaviour
 
         if (dist < 30) { 
             isMad = true;
-            agent.speed = 5f;
-            AudioManager.Instance.PlaySFX(aggroSound, 0.5f);
+            agent.speed = 11f;
+            AudioManager.Instance.PlaySFX(aggroSound[Random.Range(0, aggroSound.Length)], 0.5f);
             agent.destination = player.transform.position;
         }
         else
         {
             isMad = false;
         }
+    }
+
+    public void PlayFootstep()
+    {
+        if (footstepAudio.Length == 0)
+            return;
+
+        AudioClip clip = footstepAudio[Random.Range(0, footstepAudio.Length)];
+
+        footstepSource.PlayOneShot(clip, footstepVolume);
     }
 }

@@ -115,7 +115,63 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.013857027
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.14062499
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.25
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.37182453
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5011548
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6258661
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.74595857
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.88452667
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -637,7 +693,63 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.13827345
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.25173214
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.39491922
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5057737
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.63048506
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7505775
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.87990785
+        functionName: PlayFootstep
+        data: 
+        objectReferenceParameter: {fileID: 8159391983444404135, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
