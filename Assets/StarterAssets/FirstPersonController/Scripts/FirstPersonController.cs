@@ -1,8 +1,10 @@
-﻿using UnityEditor.Rendering;
+﻿using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEditor.Rendering;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 #endif
 
 namespace StarterAssets
@@ -19,9 +21,23 @@ namespace StarterAssets
 
         private bool _paused = false;
 
+
 		[Header("Footsteps")]
 		[SerializeField] private AudioClip[] footstepAudio;
         [SerializeField] private float stepDistance = 2f;
+		[SerializeField] private float sprintNoiseRadius = 45f;
+        [SerializeField] private float walkNoiseRadius = 35f;
+        public float CurrentNoiseRadius
+        {
+            get
+            {
+                if (_controller.velocity.magnitude < 0.1f)
+                    return 0f;
+
+                return _input.sprint ? sprintNoiseRadius : walkNoiseRadius;
+            }
+        }
+
 
         private Vector3 lastFootstepPosition;
 
@@ -35,11 +51,13 @@ namespace StarterAssets
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
 
-		[Space(10)]
+
+        [Space(10)]
 		[Tooltip("The height the player can jump")]
 		public float JumpHeight = 1.2f;
 		[Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
 		public float Gravity = -15.0f;
+	
 
 		[Space(10)]
 		[Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
@@ -78,6 +96,7 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
+		
 	
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
@@ -191,7 +210,9 @@ namespace StarterAssets
 
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is no input, set the target speed to 0
-			if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+			if (_input.move == Vector2.zero) { 
+				targetSpeed = 0.0f; 
+			}
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -221,7 +242,7 @@ namespace StarterAssets
 			// if there is a move input rotate player when the player is moving
 			if (_input.move != Vector2.zero)
 			{
-				// move
+
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
 			}
 
@@ -328,8 +349,8 @@ namespace StarterAssets
             if (pauseMenu != null)
                 pauseMenu.SetActive(true);
 
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
 
             _input.cursorLocked = false;
             _input.look = Vector2.zero;
@@ -352,8 +373,8 @@ namespace StarterAssets
 				settingsMenu.SetActive(false);
 			}
 
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 
             _input.cursorLocked = true;
 

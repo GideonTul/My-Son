@@ -1,3 +1,4 @@
+using StarterAssets;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private AudioClip[] footstepAudio;
     [SerializeField] private float footstepVolume = 0.2f;
     private AudioSource footstepSource;
-
+    private static bool playerSafe = false;
 
     enum State
     {
@@ -32,6 +33,7 @@ public class EnemyAI : MonoBehaviour
     public AudioClip atkSound;
 
     private GameObject player;
+    private FirstPersonController playerAudio;
 
     private bool isMad = false;
 
@@ -41,6 +43,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+        playerAudio = player.GetComponent<FirstPersonController>();
         footstepSource = GetComponent<AudioSource>();
 
         currentState = State.Roam;
@@ -56,15 +59,43 @@ public class EnemyAI : MonoBehaviour
         if (patrolPoints.Length == 0)
             return;
 
-        float distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
-        ControlAggro(distFromPlayer);
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        CheckAggro(distance);
 
         float speed = agent.velocity.magnitude;
 
         Debug.Log("Enemy Speed: " +  speed);
         anim.SetFloat("Speed", speed);
 
-        // Have we reached the patrol point?
+        if (!isMad)
+        {
+            Roam();
+        }
+        else
+        {
+            ChasePlayer(distance);
+        }
+    }
+    public static void PlayerReachedSafeZone()
+    {
+        playerSafe = true;
+    }
+
+    public static void PlayerLeftSafeZone()
+    {
+        playerSafe = false;
+    }
+
+    public static bool GetPlayerSafetyStatus()
+    {
+        return playerSafe;
+    }
+
+
+    bool atk = false;
+    private void Roam()
+    {
         if (!agent.pathPending &&
             agent.remainingDistance <= agent.stoppingDistance)
         {
@@ -73,42 +104,82 @@ public class EnemyAI : MonoBehaviour
             if (currentPoint >= patrolPoints.Length)
                 currentPoint = 0;
 
-            agent.destination = patrolPoints[currentPoint].position;
+            agent.SetDestination(patrolPoints[currentPoint].position);
         }
     }
-    bool atk = false;
-    private void ControlAggro(float dist)
+
+    private void CheckAggro(float distance)
     {
-        if (dist > 35) { 
-            isMad = false;
-            agent.speed = 5f;
-            agent.destination = patrolPoints[currentPoint].position;
-            AudioManager.Instance.PlayMusic(normalMusic, 1f, 0.2f);
-            atk = false;
-        }
-        if (dist < 5 && !atk)
+        if (playerSafe)
         {
-            AudioManager.Instance.PlaySFX(atkSound, 0.5f);
+            CalmDown();
+            return;
+        }
+
+        bool playerHeard = distance <= playerAudio.CurrentNoiseRadius;
+
+
+        if (!isMad && playerHeard)
+        {
+            BecomeAggro();
+        }
+        else if (isMad && distance > 55f)
+        {
+            CalmDown();
+        }
+    }
+
+    public void HearNoise(Vector3 noisePosition, float noiseRadius)
+    {
+        if (playerSafe || isMad)
+            return;
+
+        float distance = Vector3.Distance(transform.position, noisePosition);
+
+        if (distance > noiseRadius)
+            return;
+
+        BecomeAggro();
+    }
+
+    private void BecomeAggro()
+    {
+        isMad = true;
+        atk = false;
+
+        agent.speed = 11f;
+
+        AudioManager.Instance.PlaySFX(
+            aggroSound[Random.Range(0, aggroSound.Length)],
+            0.5f);
+
+        AudioManager.Instance.PlayMusic(chaseMusic, 0.1f, 0.5f);
+    }
+
+    private void ChasePlayer(float distance)
+    {
+        agent.SetDestination(player.transform.position);
+
+        if (distance < 5f && !atk)
+        {
             atk = true;
+            AudioManager.Instance.PlaySFX(atkSound, 0.5f);
         }
+    }
 
-        if (isMad) {
-            agent.destination = player.transform.position;
-            return; 
-        }
+    private void CalmDown()
+    {
+        if (!isMad)
+            return;
 
-        if (dist < 30) { 
-            isMad = true;
-            agent.speed = 11f;
-            AudioManager.Instance.PlaySFX(aggroSound[Random.Range(0, aggroSound.Length)], 0.5f);
-            //AudioManager.Instance.PlaySFX(musicSting, 0.2f);
-            AudioManager.Instance.PlayMusic(chaseMusic, 0.1f, 0.5f);
-            agent.destination = player.transform.position;
-        }
-        else
-        {
-            isMad = false;
-        }
+        isMad = false;
+        atk = false;
+
+        agent.speed = 5f;
+
+        agent.SetDestination(patrolPoints[currentPoint].position);
+
+        AudioManager.Instance.PlayMusic(normalMusic, 1f, 0.2f);
     }
 
     public void PlayFootstep()

@@ -27,8 +27,11 @@ public class NoiseEvent : MonoBehaviour
 
     private bool eventActive;
 
+    private EnemyAI enemy;
+
     void Start()
     {
+        enemy = FindAnyObjectByType<EnemyAI>();
         promptUI.SetActive(false);
         StartCoroutine(EventLoop());
     }
@@ -42,7 +45,7 @@ public class NoiseEvent : MonoBehaviour
             if (eventActive)
                 continue;
 
-            if (Random.value <= eventChance)
+            if (Random.value <= eventChance && !EnemyAI.GetPlayerSafetyStatus())
                 StartCoroutine(StartNoiseEvent());
         }
     }
@@ -72,9 +75,7 @@ public class NoiseEvent : MonoBehaviour
 
         // Player failed
         Debug.Log("Noise attracted the monster!");
-
-        // TODO:
-        // AlertEnemies(transform.position, noiseRadius);
+        enemy.HearNoise(transform.position, noiseRadius);
 
         EndEvent(true);
     }
