@@ -26,6 +26,9 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Behavior")]
     public AudioClip[] aggroSound;
+    public AudioClip musicSting;
+    public MusicTrack chaseMusic;
+    public MusicTrack normalMusic;
     public AudioClip atkSound;
 
     private GameObject player;
@@ -80,6 +83,7 @@ public class EnemyAI : MonoBehaviour
             isMad = false;
             agent.speed = 5f;
             agent.destination = patrolPoints[currentPoint].position;
+            AudioManager.Instance.PlayMusic(normalMusic, 1f, 0.2f);
             atk = false;
         }
         if (dist < 5 && !atk)
@@ -97,6 +101,8 @@ public class EnemyAI : MonoBehaviour
             isMad = true;
             agent.speed = 11f;
             AudioManager.Instance.PlaySFX(aggroSound[Random.Range(0, aggroSound.Length)], 0.5f);
+            //AudioManager.Instance.PlaySFX(musicSting, 0.2f);
+            AudioManager.Instance.PlayMusic(chaseMusic, 0.1f, 0.5f);
             agent.destination = player.transform.position;
         }
         else
