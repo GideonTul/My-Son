@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public void SetCheckpoint(Vector3 position)
     {
-        CurrentCheckpoint = position + Vector3.down;
+        CurrentCheckpoint = position + Vector3.down * 2f;
     }
 
     public void RespawnPlayer(GameObject player)

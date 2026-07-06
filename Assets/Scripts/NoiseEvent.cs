@@ -1,6 +1,7 @@
 using System.Collections;
-using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class NoiseEvent : MonoBehaviour
 {
@@ -26,15 +27,37 @@ public class NoiseEvent : MonoBehaviour
     public float noiseRadius = 15f;
 
     private bool eventActive;
-
+    private Coroutine eventLoop;
     private EnemyAI enemy;
 
     void Start()
     {
         enemy = FindAnyObjectByType<EnemyAI>();
-        promptUI.SetActive(false);
-        StartCoroutine(EventLoop());
     }
+
+    void OnEnable()
+    {
+        if (promptUI != null)
+            promptUI.SetActive(false);
+
+        eventLoop = StartCoroutine(EventLoop());
+    }
+
+    void OnDisable()
+    {
+        if (eventLoop != null)
+        {
+            StopCoroutine(eventLoop);
+            eventLoop = null;
+        }
+
+        eventActive = false;
+
+        if (promptUI != null)
+            promptUI.SetActive(false);
+    }
+
+
 
     IEnumerator EventLoop()
     {
