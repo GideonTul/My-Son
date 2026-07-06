@@ -17,6 +17,7 @@ namespace StarterAssets
 		[Header("Pause")]
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject settingsMenu;
+        [SerializeField] private MusicTrack mainTheme;
 
         private bool _paused = false;
 
@@ -136,7 +137,10 @@ namespace StarterAssets
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
-			pauseMenu.SetActive(false);
+			Time.timeScale = 1f;
+            UnityEngine.Cursor.visible = false;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            pauseMenu.SetActive(false);
             settingsMenu.SetActive(false);
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
@@ -376,6 +380,7 @@ namespace StarterAssets
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 
             _input.cursorLocked = true;
+			
 
             // Prevent camera jumping
             _input.look = Vector2.zero;
@@ -395,6 +400,21 @@ namespace StarterAssets
 		}
         public void QuitButton()
 		{
+            _paused = false;
+
+            Time.timeScale = 1f;
+
+            if (pauseMenu != null)
+            {
+                pauseMenu.SetActive(false);
+            }
+
+            if (settingsMenu != null)
+            {
+                settingsMenu.SetActive(false);
+            }
+
+            AudioManager.Instance.PlayMusic(mainTheme, 2f, 1f);
 			SceneManager.LoadScene("MainMenu");
 		}
 

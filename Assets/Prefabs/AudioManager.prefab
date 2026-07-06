@@ -46,10 +46,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3004173323207819238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92bb53307c4259642a038650480f300e, type: 3}
+  m_Script: {fileID: 11500000, guid: e43f25a6625f7384d9b04375315d50ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  mixer: {fileID: 24100000, guid: 9dcc73e5ab816ee4696e094a775b11ec, type: 2}
+  mixer: {fileID: 24100000, guid: f1cd311f797af5949a07729c34c016ac, type: 2}
   musicA: {fileID: 7451055630418635418}
   musicB: {fileID: 5803831018217230617}
   sfxSource: {fileID: 1097470590566249732}
@@ -353,12 +353,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6117408585960436893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec737b4536e1023488b801ce80fdb85b, type: 3}
+  m_Script: {fileID: 11500000, guid: d32d1010f826bcb458862c48152c9cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneMusic
   track:
-    introClip: {fileID: 8300000, guid: 410830b3ed68a6645bdf1b99b046fbe6, type: 3}
-    loopClip: {fileID: 8300000, guid: a03b7536214f6404090c6215cfb7db0f, type: 3}
+    introClip: {fileID: 0}
+    loopClip: {fileID: 0}
+  volume: 1
 --- !u!1 &7863598048383820740
 GameObject:
   m_ObjectHideFlags: 0

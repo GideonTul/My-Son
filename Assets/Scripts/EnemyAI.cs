@@ -16,12 +16,6 @@ public class EnemyAI : MonoBehaviour
     private AudioSource footstepSource;
     private static bool playerSafe = false;
 
-    enum State
-    {
-        Roam, Aggro
-    }
-
-    State currentState;
     [Header("Patrol Points")]
     public Transform[] patrolPoints;
 
@@ -55,7 +49,6 @@ public class EnemyAI : MonoBehaviour
         playerAudio = player.GetComponent<FirstPersonController>();
         footstepSource = GetComponent<AudioSource>();
         originalPlayerRot = player.transform.rotation;
-        currentState = State.Roam;
         deathCutscene.stopped += OnCutsceneEnd;
         if (patrolPoints.Length > 0)
         {
@@ -102,7 +95,6 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    bool atk = false;
     private void Roam()
     {
         if (!agent.pathPending &&
@@ -155,7 +147,6 @@ public class EnemyAI : MonoBehaviour
     private void BecomeAggro()
     {
         isMad = true;
-        atk = false;
 
         agent.speed = 11f;
 
@@ -250,7 +241,6 @@ public class EnemyAI : MonoBehaviour
     private void CalmDownImmediate()
     {
         isMad = false;
-        atk = false;
 
         agent.isStopped = false;
         agent.ResetPath();
@@ -268,7 +258,6 @@ public class EnemyAI : MonoBehaviour
             return;
 
         isMad = false;
-        atk = false;
 
         agent.speed = 5f;
 

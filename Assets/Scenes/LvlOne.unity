@@ -570,6 +570,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3004173323207819238, guid: 1f30329d2edf29d44a5ec4fae1a3f16e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5471482750982101367, guid: 1f30329d2edf29d44a5ec4fae1a3f16e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 816.7724
@@ -1170,7 +1174,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: a85a96f7f81731e428fae9fa4b8bbb71, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -1246,8 +1250,8 @@ PrefabInstance:
 
         He has the boy in his arms;
 
-        he holds
-        him safely, he keeps him warm.'
+        he holds him
+        safely, he keeps him warm.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3759,6 +3763,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73bfe62508fefc4ab3bd6d35a0e4644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint
+--- !u!1 &1595294384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1595294386}
+  - component: {fileID: 1595294385}
+  m_Layer: 0
+  m_Name: TimelineController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1595294385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595294384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e2678642d1bb4bad768cbeb875ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimelineController
+  director: {fileID: 276065005}
+--- !u!4 &1595294386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595294384}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 451.35382, y: 145.2097, z: 59.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1605782425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5152,6 +5201,14 @@ PrefabInstance:
       value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
+      propertyPath: mainTheme.loopClip
+      value: 
+      objectReference: {fileID: 8300000, guid: cc936bd0f1116c74fa06a8677c6eba43, type: 3}
+    - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
+      propertyPath: mainTheme.introClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd1319d94fa966e439230dda0bdaf10f, type: 3}
+    - target: {fileID: 453084650579209848, guid: 035bf1ba97d19214580cfe6f5a29fdc3, type: 3}
       propertyPath: footstepAudio.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -5668,3 +5725,4 @@ SceneRoots:
   - {fileID: 1702252409}
   - {fileID: 706266685}
   - {fileID: 2092982528}
+  - {fileID: 1595294386}
