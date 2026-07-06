@@ -1,7 +1,10 @@
 using StarterAssets;
+using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 public class EnemyAI : MonoBehaviour
 {
@@ -28,14 +31,17 @@ public class EnemyAI : MonoBehaviour
     [Header("Behavior")]
     public AudioClip[] aggroSound;
     public AudioClip musicSting;
+    public MusicTrack deathMusic;
     public MusicTrack chaseMusic;
     public MusicTrack normalMusic;
     public AudioClip atkSound;
+    public AudioClip babyScream;
 
     private GameObject player;
     private FirstPersonController playerAudio;
-
+    Quaternion originalPlayerRot;
     private bool isMad = false;
+    private bool isRespawning = false;
 
     private int currentPoint = 0;
 
@@ -45,7 +51,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerAudio = player.GetComponent<FirstPersonController>();
         footstepSource = GetComponent<AudioSource>();
-
+        originalPlayerRot = player.transform.rotation;
         currentState = State.Roam;
 
         if (patrolPoints.Length > 0)
@@ -110,7 +116,8 @@ public class EnemyAI : MonoBehaviour
 
     private void CheckAggro(float distance)
     {
-        if (playerSafe)
+        
+        if (playerSafe || isRespawning)
         {
             CalmDown();
             return;
@@ -153,18 +160,93 @@ public class EnemyAI : MonoBehaviour
             aggroSound[Random.Range(0, aggroSound.Length)],
             0.5f);
 
-        AudioManager.Instance.PlayMusic(chaseMusic, 0.1f, 0.5f);
+        if (isRespawning == false) AudioManager.Instance.PlayMusic(chaseMusic, 0.1f, 0.4f);
     }
-
+    private bool cutsceneTriggered = false;
     private void ChasePlayer(float distance)
     {
         agent.SetDestination(player.transform.position);
 
-        if (distance < 5f && !atk)
+        if (distance < 9f && !cutsceneTriggered)
         {
-            atk = true;
-            AudioManager.Instance.PlaySFX(atkSound, 0.5f);
+            cutsceneTriggered = true;
+            var noise = player.GetComponent<NoiseEvent>();
+            noise.enabled = false;
+            StartCoroutine(AttackCutscene());
         }
+    }
+
+
+    private IEnumerator AttackCutscene()
+    {
+        agent.isStopped = true;
+        isMad = false;
+
+
+        FirstPersonController controller = player.GetComponent<FirstPersonController>();
+        controller.enabled = false;
+        Vector3 targetLook = transform.position + Vector3.up * 2f;
+
+        transform.LookAt(player.transform);
+        player.transform.LookAt(targetLook);
+
+        isRespawning = true;
+        anim.SetTrigger("Attack");
+        AudioManager.Instance.PlaySFX(atkSound, 0.5f);
+        CameraShake.Instance.Shake(0.7f, 0.4f);
+        // AudioManager.Instance.PlayMusic(deathMusic, 2f, 1f);
+        AudioManager.Instance.PlaySFX(babyScream, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(0.8f);
+
+        
+        StartCoroutine(RespawnRoutine());
+
+    }
+    private IEnumerator RespawnRoutine()
+    {
+        FirstPersonController controller = player.GetComponent<FirstPersonController>();
+
+        yield return StartCoroutine(ScreenFader.Instance.FadeToBlack());
+
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        
+
+        CalmDownImmediate();
+        GameManager.Instance.RespawnPlayer(player);
+        
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        Time.timeScale = 1f;
+        AudioManager.Instance.PlayMusic(normalMusic, 2f, 0.2f);
+        yield return StartCoroutine(ScreenFader.Instance.FadeFromBlack());
+        controller.enabled = true;
+        player.transform.rotation = originalPlayerRot;
+        yield return new WaitForSeconds(1f);
+        
+        isRespawning = false;
+        cutsceneTriggered = false;
+        var noise = player.GetComponent<NoiseEvent>();
+        noise.enabled = true;
+        
+    }
+    private void CalmDownImmediate()
+    {
+        isMad = false;
+        atk = false;
+
+        agent.isStopped = false;
+        agent.ResetPath();
+
+        agent.speed = 5f;
+
+        if (patrolPoints.Length > 0)
+            agent.SetDestination(patrolPoints[currentPoint].position);
+
     }
 
     private void CalmDown()
@@ -179,7 +261,7 @@ public class EnemyAI : MonoBehaviour
 
         agent.SetDestination(patrolPoints[currentPoint].position);
 
-        AudioManager.Instance.PlayMusic(normalMusic, 1f, 0.2f);
+        if (isRespawning == false) AudioManager.Instance.PlayMusic(normalMusic, 2f, 0.2f);
     }
 
     public void PlayFootstep()
