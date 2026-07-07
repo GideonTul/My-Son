@@ -96,7 +96,7 @@ public class NoiseEvent : MonoBehaviour
             yield return null;
         }
 
-        // Player failed
+
         Debug.Log("Noise attracted the monster!");
         enemy.HearNoise(transform.position, noiseRadius);
 
@@ -105,7 +105,7 @@ public class NoiseEvent : MonoBehaviour
 
     void EndEvent(bool failed)
     {
-        AudioManager.Instance.StopSFX();
+        if (failed == false) AudioManager.Instance.StopSFX();
 
         promptUI.SetActive(false);
 

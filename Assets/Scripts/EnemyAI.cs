@@ -32,6 +32,9 @@ public class EnemyAI : MonoBehaviour
     public MusicTrack normalMusic;
     public AudioClip atkSound;
     public AudioClip babyScream;
+    public float aggroSpeed = 10f;
+    public float walkSpeed = 5f;
+
 
     private GameObject player;
     private FirstPersonController playerAudio;
@@ -49,6 +52,7 @@ public class EnemyAI : MonoBehaviour
         playerAudio = player.GetComponent<FirstPersonController>();
         footstepSource = GetComponent<AudioSource>();
         originalPlayerRot = player.transform.rotation;
+        agent.speed = walkSpeed;
         deathCutscene.stopped += OnCutsceneEnd;
         if (patrolPoints.Length > 0)
         {
@@ -139,8 +143,10 @@ public class EnemyAI : MonoBehaviour
         float distance = Vector3.Distance(transform.position, noisePosition);
 
         if (distance > noiseRadius)
+        {
+            agent.destination = noisePosition;
             return;
-
+        }
         BecomeAggro();
     }
 
@@ -148,7 +154,7 @@ public class EnemyAI : MonoBehaviour
     {
         isMad = true;
 
-        agent.speed = 11f;
+        agent.speed = aggroSpeed;
 
         AudioManager.Instance.PlaySFX(
             aggroSound[Random.Range(0, aggroSound.Length)],
@@ -161,7 +167,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent.SetDestination(player.transform.position);
 
-        if (distance < 9f && !cutsceneTriggered)
+        if (distance < 3f && !cutsceneTriggered)
         {
             cutsceneTriggered = true;
             var noise = player.GetComponent<NoiseEvent>();
@@ -184,60 +190,6 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    //private IEnumerator AttackCutscene()
-    //{
-    //    agent.isStopped = true;
-    //    isMad = false;
-
-
-    //    FirstPersonController controller = player.GetComponent<FirstPersonController>();
-    //    controller.enabled = false;
-    //    Vector3 targetLook = transform.position + Vector3.up * 2f;
-
-    //    transform.LookAt(player.transform);
-    //    player.transform.LookAt(targetLook);
-
-    //    isRespawning = true;
-    //    anim.SetTrigger("Attack");
-    //    AudioManager.Instance.PlaySFX(atkSound, 0.5f);
-    //    CameraShake.Instance.Shake(0.7f, 0.4f);
-    //    // AudioManager.Instance.PlayMusic(deathMusic, 2f, 1f);
-    //    AudioManager.Instance.PlaySFX(babyScream, 0.5f);
-    //    yield return new WaitForSeconds(0.5f);
-
-    //    yield return new WaitForSeconds(0.8f);
-
-        
-    //    StartCoroutine(RespawnRoutine());
-
-    //}
-    //private IEnumerator RespawnRoutine()
-    //{
-    //    FirstPersonController controller = player.GetComponent<FirstPersonController>();
-
-    //    yield return StartCoroutine(ScreenFader.Instance.FadeToBlack());
-
-    //    Time.timeScale = 0f;
-
-    //    yield return new WaitForSecondsRealtime(0.5f);
-
-    //    GameManager.Instance.RespawnPlayer(player);
-        
-    //    yield return new WaitForSecondsRealtime(0.5f);
-
-    //    Time.timeScale = 1f;
-    //    AudioManager.Instance.PlayMusic(normalMusic, 2f, 0.2f);
-    //    yield return StartCoroutine(ScreenFader.Instance.FadeFromBlack());
-    //    controller.enabled = true;
-    //    player.transform.rotation = originalPlayerRot;
-    //    yield return new WaitForSeconds(1f);
-        
-    //    isRespawning = false;
-    //    cutsceneTriggered = false;
-    //    var noise = player.GetComponent<NoiseEvent>();
-    //    noise.enabled = true;
-        
-    //}
     private void CalmDownImmediate()
     {
         isMad = false;
@@ -245,11 +197,10 @@ public class EnemyAI : MonoBehaviour
         agent.isStopped = false;
         agent.ResetPath();
 
-        agent.speed = 5f;
+        agent.speed = walkSpeed;
+        currentPoint = Random.Range(0, patrolPoints.Length);
 
-        if (patrolPoints.Length > 0)
-            agent.SetDestination(patrolPoints[currentPoint].position);
-
+        agent.Warp(patrolPoints[currentPoint].position);
     }
 
     private void CalmDown()
@@ -259,7 +210,7 @@ public class EnemyAI : MonoBehaviour
 
         isMad = false;
 
-        agent.speed = 5f;
+        agent.speed = walkSpeed;
 
         agent.SetDestination(patrolPoints[currentPoint].position);
 

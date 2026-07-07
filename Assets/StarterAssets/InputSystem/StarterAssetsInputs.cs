@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool pause = false;
+		public bool interact;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -35,7 +36,12 @@ namespace StarterAssets
 			}
 		}
 
-		public void OnJump(InputValue value)
+        public void OnInteract(InputValue value)
+        {
+            interact = value.isPressed;
+        }
+
+        public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
 		}

@@ -51,6 +51,11 @@ namespace StarterAssets
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
 
+        [Header("Interaction")]
+        [SerializeField] private float interactDistance = 3f;
+        [SerializeField] private LayerMask interactLayers = ~0;
+        [SerializeField] private GameObject interactPrompt;
+
 
         [Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -165,6 +170,9 @@ namespace StarterAssets
 			GroundedCheck();
 			Move();
 			HandleFootsteps();
+
+			UpdateInteractable();
+			HandleInteraction();
 		}
 
 		private void LateUpdate()
@@ -174,7 +182,34 @@ namespace StarterAssets
             CameraRotation();
 		}
 
-		private void GroundedCheck()
+        private void HandleInteraction()
+        {
+            if (!_input.interact)
+                return;
+
+            _input.interact = false;
+
+            currentInteractable?.Interact();
+        }
+
+        private IInteractable currentInteractable;
+
+        private void UpdateInteractable()
+        {
+            currentInteractable = null;
+
+            Ray ray = new Ray(_mainCamera.transform.position, _mainCamera.transform.forward);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactLayers))
+            {
+                currentInteractable = hit.collider.GetComponent<IInteractable>();
+				// Debug.Log(currentInteractable);
+            }
+
+            interactPrompt.SetActive(currentInteractable != null);
+        }
+
+        private void GroundedCheck()
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);

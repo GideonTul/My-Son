@@ -27,6 +27,20 @@ public class ScreenFader : MonoBehaviour
         canvasGroup.alpha = 1f;
     }
 
+    public IEnumerator FadeToBlack(CanvasGroup cg, float fs)
+    {
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.unscaledDeltaTime * fs;
+            cg.alpha = t;
+            yield return null;
+        }
+
+        cg.alpha = 1f;
+    }
+
     public IEnumerator FadeFromBlack()
     {
         float t = 1f;
@@ -39,5 +53,19 @@ public class ScreenFader : MonoBehaviour
         }
 
         canvasGroup.alpha = 0f;
+    }
+
+    public IEnumerator FadeFromBlack(CanvasGroup cg, float fs)
+    {
+        float t = 1f;
+
+        while (t > 0f)
+        {
+            t -= Time.unscaledDeltaTime * fs;
+            cg.alpha = t;
+            yield return null;
+        }
+
+        cg.alpha = 0f;
     }
 }
