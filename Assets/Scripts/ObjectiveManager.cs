@@ -11,7 +11,7 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] private int numOfObjectives;
     private static int objectivesComplete = 0;
     [SerializeField] private GameObject finalObj;
-    [SerializeField] private MusicTrack FinalSong;
+    [AudioCue] [SerializeField] private string FinalSong;
     [SerializeField] private PlayableDirector FinalCutscene;
 
     [TextArea] public string text;

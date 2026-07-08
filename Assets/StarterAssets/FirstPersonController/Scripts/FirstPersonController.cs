@@ -15,12 +15,12 @@ namespace StarterAssets
 	public class FirstPersonController : MonoBehaviour
 	{
 		[Header("Music")]
-		[SerializeField] private MusicTrack startMusic;
+		[AudioCue] [SerializeField] private string startMusic;
 
 		[Header("Pause")]
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject settingsMenu;
-        [SerializeField] private MusicTrack mainTheme;
+        [AudioCue][SerializeField] private string mainTheme;
 
         private bool _paused = false;
 
