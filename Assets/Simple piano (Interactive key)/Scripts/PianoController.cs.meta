@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: f84f1c3ad903bd54d87b0b4402d9de3e
+AssetOrigin:
+  serializedVersion: 1
+  productId: 372056
+  packageName: Simple piano (Interactive key)
+  packageVersion: 1.0
+  assetPath: Assets/Simple piano (Interactive key)/Scripts/PianoController.cs
+  uploadId: 906528

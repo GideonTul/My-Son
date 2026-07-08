@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0fad9d5892cd0314ea79229a95029883
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 372056
+  packageName: Simple piano (Interactive key)
+  packageVersion: 1.0
+  assetPath: Assets/Simple piano (Interactive key)/Materials/M_metal.mat
+  uploadId: 906528

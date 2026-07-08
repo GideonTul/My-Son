@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a810331edad46c44abc330cda90802b7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 372056
+  packageName: Simple piano (Interactive key)
+  packageVersion: 1.0
+  assetPath: Assets/Simple piano (Interactive key)/Prefabs/Piano/Piano_Static.prefab
+  uploadId: 906528

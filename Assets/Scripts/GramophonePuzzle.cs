@@ -15,6 +15,7 @@ public class GramophonePuzzle : MonoBehaviour, IInteractable
         {
             GetComponent<AudioSource>().enabled = true;
             ObjectiveManager.Instance.Complete();
+            GetComponent<Collider>().enabled = false;
         }
         else
         {

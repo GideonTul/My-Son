@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1846b2b6204f50a4f9ed5abf4a7e8226
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 372056
+  packageName: Simple piano (Interactive key)
+  packageVersion: 1.0
+  assetPath: Assets/Simple piano (Interactive key)/Prefabs/Piano/Piano_Chair.prefab
+  uploadId: 906528

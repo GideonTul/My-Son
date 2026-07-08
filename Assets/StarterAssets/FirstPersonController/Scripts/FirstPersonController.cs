@@ -450,8 +450,12 @@ namespace StarterAssets
             }
 
             AudioManager.Instance.PlayMusic(mainTheme, 2f, 1f);
-			SceneManager.LoadScene("MainMenu");
+			Quit();
 		}
+		public void Quit()
+		{
+            SceneManager.LoadScene("MainMenu");
+        }
 
     }
 }

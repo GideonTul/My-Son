@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 75dfe66b1c9a7344586a67da50169d68
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 372056
+  packageName: Simple piano (Interactive key)
+  packageVersion: 1.0
+  assetPath: Assets/Simple piano (Interactive key)/Prefabs/Piano/Set_Piano_Static_Collider.prefab
+  uploadId: 906528

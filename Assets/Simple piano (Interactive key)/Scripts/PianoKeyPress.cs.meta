@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 25f80a4aea737df4fb8783fbcd0caea5
+AssetOrigin:
+  serializedVersion: 1
+  productId: 372056
+  packageName: Simple piano (Interactive key)
+  packageVersion: 1.0
+  assetPath: Assets/Simple piano (Interactive key)/Scripts/PianoKeyPress.cs
+  uploadId: 906528

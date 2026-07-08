@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: afadad82b6184984387c9218d30ae041
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 372056
+  packageName: Simple piano (Interactive key)
+  packageVersion: 1.0
+  assetPath: Assets/Simple piano (Interactive key)/Prefabs/Utilities/Test_Hand (Cube).prefab
+  uploadId: 906528

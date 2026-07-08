@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: badb096c4044c034c802f3432668aa27
+AssetOrigin:
+  serializedVersion: 1
+  productId: 372056
+  packageName: Simple piano (Interactive key)
+  packageVersion: 1.0
+  assetPath: Assets/Simple piano (Interactive key)/Scripts/PianoKeyByName_Audio.cs
+  uploadId: 906528

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -8,13 +9,21 @@ public class ObjectiveManager : MonoBehaviour
 
     [SerializeField] private int numOfObjectives;
     private static int objectivesComplete = 0;
-    private bool missionComplete = false;
+    [SerializeField] private GameObject finalObj;
+    [SerializeField] private MusicTrack FinalSong;
+    [SerializeField] private PlayableDirector FinalCutscene;
+
+    [TextArea] public string text;
 
     private List<int> vinyls = new List<int>();
 
     private void Awake()
     {
         Instance = this;
+        if (finalObj != null)
+        {
+            finalObj.SetActive(false);
+        }
 
     }
 
@@ -22,15 +31,29 @@ public class ObjectiveManager : MonoBehaviour
     {
         objectivesComplete++;
 
-        if (objectivesComplete >= numOfObjectives) missionComplete = true;
+        if (objectivesComplete >= numOfObjectives) { 
+            UIMessageManager.Instance.ShowMessage(text, 10f); 
+            if (finalObj != null)
+            {
+                finalObj.SetActive(true);
+            }
+        }
     }
-    public bool MissionComplete()
+
+
+    public void MissionComplete()
     {
-        // maybe add call to a MissionComplete interface instead
+        if (FinalSong != null)
+        {
+            AudioManager.Instance.PlayMusic(FinalSong, 2f, 1f);
+        }
+        if (FinalCutscene != null)
+        {
+            FinalCutscene.Play();
+        }
+    }
 
-
-        return missionComplete;
-    } 
+    
 
     public void CollectVinyl(int vinylID)
     {

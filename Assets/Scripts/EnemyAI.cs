@@ -169,15 +169,19 @@ public class EnemyAI : MonoBehaviour
 
         if (distance < 3f && !cutsceneTriggered)
         {
-            cutsceneTriggered = true;
-            var noise = player.GetComponent<NoiseEvent>();
-            noise.enabled = false;
-            isRespawning = true;
-            player.GetComponent<FirstPersonController>().enabled = false;
-            PlayDeathCutscene();
-            CalmDownImmediate();
-            
+            KillPlayer();        
         }
+    }
+
+    public void KillPlayer()
+    {
+        cutsceneTriggered = true;
+        var noise = player.GetComponent<NoiseEvent>();
+        noise.enabled = false;
+        isRespawning = true;
+        player.GetComponent<FirstPersonController>().enabled = false;
+        PlayDeathCutscene();
+        CalmDownImmediate();
     }
     void OnCutsceneEnd(PlayableDirector pd)
     {
@@ -231,5 +235,10 @@ public class EnemyAI : MonoBehaviour
         deathCutscene.Play();
         AudioManager.Instance.PlayMusic(normalMusic, 2f, 0.2f);
         GameManager.Instance.RespawnPlayer(player);
+    }
+
+    public void Alert(Transform t)
+    {
+        agent.SetDestination(t.position);
     }
 }
