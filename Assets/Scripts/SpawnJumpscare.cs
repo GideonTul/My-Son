@@ -9,6 +9,7 @@ public class SpawnJumpscare : MonoBehaviour
     private void OnDestroy()
     {
         AudioManager.Instance.PlaySFX(Sfx, 0.2f);
-        toSpawn.SetActive(true);
+
+        if (toSpawn != null) toSpawn.SetActive(true);
     }
 }

@@ -20,6 +20,10 @@ public class ObjectiveManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        objectivesComplete = 0;
+
+        vinyls = new List<int>();
+
         if (finalObj != null)
         {
             finalObj.SetActive(false);
@@ -29,8 +33,10 @@ public class ObjectiveManager : MonoBehaviour
 
     public void Complete()
     {
-        objectivesComplete++;
+        
 
+        objectivesComplete++;
+        Debug.Log("Objs Complete: " + objectivesComplete);
         if (objectivesComplete >= numOfObjectives) { 
             UIMessageManager.Instance.ShowMessage(text, 10f); 
             if (finalObj != null)

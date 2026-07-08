@@ -5836,8 +5836,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7531354725836404929, guid: eba848d6f406d584f8f645045aec0696, type: 3}
       propertyPath: m_text
-      value: "'I love you, your fair form allures me,\r\nand if you don\u2019t come
-        willingly, I\u2019ll use force.'\r\n\r\nThe father shudders, he rides swiftly,.."
+      value: "'If you don\u2019t come willingly, I\u2019ll use force.'\r\n\r\nThe
+        father shudders, he rides swiftly,.."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
