@@ -14,6 +14,9 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
+		[Header("Music")]
+		[SerializeField] private MusicTrack startMusic;
+
 		[Header("Pause")]
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject settingsMenu;
@@ -142,6 +145,7 @@ namespace StarterAssets
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
+ 			if (startMusic != null) AudioManager.Instance.PlayMusic(startMusic, 2f, 0.2f);
 			Time.timeScale = 1f;
             UnityEngine.Cursor.visible = false;
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;

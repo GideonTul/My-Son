@@ -66,17 +66,17 @@ namespace JIYUMA.Piano
             clips = Resources.LoadAll<AudioClip>("Piano");
         }
 
-        void OnMouseDown()
-        {
-            if (!CanUseClick()) return;
-            PlayNote();
-        }
+        //void OnMouseDown()
+        //{
+        //    if (!CanUseClick()) return;
+        //    PlayNote();
+        //}
 
-        void OnMouseUp()
-        {
-            if (!CanUseClick()) return;
-            StartFadeOut();
-        }
+        //void OnMouseUp()
+        //{
+        //    if (!CanUseClick()) return;
+        //    StartFadeOut();
+        //}
 
         void OnTriggerEnter(Collider other)
         {

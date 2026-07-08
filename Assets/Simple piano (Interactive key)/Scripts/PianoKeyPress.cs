@@ -45,21 +45,21 @@ namespace JIYUMA.Piano
             isPedal = lowerName.Contains("pedal");
         }
 
-        void OnMouseDown()
-        {
-            if (!CanUseClick()) return;
+        //void OnMouseDown()
+        //{
+        //    if (!CanUseClick()) return;
 
-            clickPressed = true;
-            UpdatePressedState();
-        }
+        //    clickPressed = true;
+        //    UpdatePressedState();
+        //}
 
-        void OnMouseUp()
-        {
-            if (!CanUseClick()) return;
+        //void OnMouseUp()
+        //{
+        //    if (!CanUseClick()) return;
 
-            clickPressed = false;
-            UpdatePressedState();
-        }
+        //    clickPressed = false;
+        //    UpdatePressedState();
+        //}
         public void PressExternally()
         {
             clickPressed = true;
