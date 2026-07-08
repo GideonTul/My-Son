@@ -10,6 +10,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioMixer mixer;
 
+    [Header("Library")]
+    [SerializeField] private MusicLibrary library;
+
     [Header("Music Sources")]
     [SerializeField]
     private AudioSource musicA;
@@ -73,6 +76,12 @@ public class AudioManager : MonoBehaviour
             StopCoroutine(musicRoutine);
 
         musicRoutine = StartCoroutine(PlayMusicRoutine(track, fadeTime, volume));
+    }
+
+    public void PlayMusic(MusicCue cue, float fadeTime = 1.9f, float volume = 1f)
+    {
+        
+        if (library != null) PlayMusic(library.Get(cue), fadeTime, volume);
     }
 
     private IEnumerator PlayMusicRoutine(MusicTrack track, float fadeTime, float tvolume)
