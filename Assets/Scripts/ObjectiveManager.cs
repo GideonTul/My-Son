@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class ObjectiveManager : MonoBehaviour
     [TextArea] public string text;
 
     private List<int> vinyls = new List<int>();
+
+    public event EventHandler<bool> MissionFinished;
 
     private void Awake()
     {
@@ -57,6 +60,7 @@ public class ObjectiveManager : MonoBehaviour
         {
             FinalCutscene.Play();
         }
+        MissionFinished?.Invoke(this, true);
     }
 
     
@@ -70,6 +74,11 @@ public class ObjectiveManager : MonoBehaviour
     public bool isVinylCollected(int id)
     {
         return vinyls.Contains(id);
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
     }
 
 }

@@ -136,6 +136,8 @@ namespace StarterAssets
 			}
 		}
 
+		
+
 		private void Start()
 		{
 			_controller = GetComponent<CharacterController>();
@@ -154,9 +156,36 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
 		}
 
-		private void Update()
+        private void OnEnable()
+        {
+            if (ObjectiveManager.Instance != null)
+            {
+                ObjectiveManager.Instance.MissionFinished += OnMissionFinished;
+            }
+        }
+        private void OnDisable()
+        {
+            if (ObjectiveManager.Instance != null)
+            {
+                ObjectiveManager.Instance.MissionFinished -= OnMissionFinished;
+            }
+        }
+
+        public void OnMissionFinished(object sender, bool success)
+        {
+			if (!success)
+			{
+				Debug.Log("Mission failed for some reason");
+				return;
+			}
+            GetComponent<NoiseEvent>().enabled = false;
+            Time.timeScale = 1f;
+
+        }
+        private void Update()
 		{
             if (_input.pause != _paused)
             {

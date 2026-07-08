@@ -103,7 +103,7 @@ public class MusicSequencePuzzle : MonoBehaviour
 
     private void BuildFixedSequence()
     {
-        // Map each note to its BUTTON INDEX.
+
         Dictionary<NoteName, int> noteToButtonIndex = new Dictionary<NoteName, int>();
 
         for (int i = 0; i < buttons.Count; i++)

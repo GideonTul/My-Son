@@ -44,10 +44,6 @@ namespace JIYUMA.Piano
             inputEnabled = enabled;
         }
 
-        /// <summary>
-        /// Your existing interaction entry point. Replaces mouse/physics
-        /// input from the piano asset with your own Interact() call.
-        /// </summary>
         public void Interact()
         {
             Debug.Log($"{name} Interact");
@@ -62,10 +58,6 @@ namespace JIYUMA.Piano
             OnButtonPressed?.Invoke(buttonId);
         }
 
-        /// <summary>
-        /// Plays the key's sound + visual press. Called by player input
-        /// via Interact(), and by the controller when demonstrating the sequence.
-        /// </summary>
         public void Activate()
         {
             keyAudio.PressExternally();

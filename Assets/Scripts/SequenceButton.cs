@@ -2,9 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-// Assumes you already have:
-// public interface IInteractable { void Interact(); }
-
 [RequireComponent(typeof(AudioSource))]
 public class SequenceButton : MonoBehaviour, IInteractable, IPuzzleButton
 {
@@ -27,8 +24,7 @@ public class SequenceButton : MonoBehaviour, IInteractable, IPuzzleButton
     public int ButtonId => buttonId;
     public NoteName Note => noteName;
 
-    // The puzzle controller subscribes to this instead of buttons
-    // needing any reference back to the controller.
+
     public event Action<int> OnButtonPressed;
 
     private void Awake()
@@ -38,18 +34,12 @@ public class SequenceButton : MonoBehaviour, IInteractable, IPuzzleButton
             baseColor = targetRenderer.material.color;
     }
 
-    /// <summary>
-    /// Called by the puzzle controller to lock/unlock player input
-    /// (e.g. disabled while the sequence is being demonstrated).
-    /// </summary>
+
     public void SetInputEnabled(bool enabled)
     {
         inputEnabled = enabled;
     }
 
-    /// <summary>
-    /// Your existing interaction entry point (e.g. from a raycast/interact system).
-    /// </summary>
     public void Interact()
     {
         if (!inputEnabled) return;
@@ -57,11 +47,6 @@ public class SequenceButton : MonoBehaviour, IInteractable, IPuzzleButton
         Activate();
         OnButtonPressed?.Invoke(buttonId);
     }
-
-    /// <summary>
-    /// Plays the note + flash. Called both by player input and by
-    /// the controller when demonstrating the sequence.
-    /// </summary>
     public void Activate()
     {
         if (note != null)
