@@ -1,5 +1,6 @@
 using StarterAssets;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -27,9 +28,12 @@ public class EnemyAI : MonoBehaviour
     [Header("Behavior")]
     public AudioClip[] aggroSound;
     public AudioClip musicSting;
-    public MusicTrack deathMusic;
-    public MusicTrack chaseMusic;
-    public MusicTrack normalMusic;
+    //public MusicTrack deathMusic;
+    //public MusicTrack chaseMusic;
+    //public MusicTrack normalMusic;
+    [AudioCue][SerializeField] private string chaseMusic;
+    [AudioCue][SerializeField] private string normalMusic;
+    [AudioCue][SerializeField] private string deathMusic;
     public AudioClip atkSound;
     public AudioClip babyScream;
     public float aggroSpeed = 10f;
