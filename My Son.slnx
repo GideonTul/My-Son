@@ -1,8 +1,8 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Timeline.Samples.Text.csproj" />
-  <Project Path="Timeline.Samples.Tween.Editor.csproj" />
   <Project Path="YourStudio.AudioSystem.Runtime.csproj" />
+  <Project Path="Timeline.Samples.Tween.Editor.csproj" />
   <Project Path="Timeline.Samples.Text.Editor.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Timeline.Samples.Annotation.Editor.csproj" />
