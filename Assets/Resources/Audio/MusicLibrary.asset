@@ -21,3 +21,5 @@ MonoBehaviour:
     track: {fileID: 11400000, guid: 5692118d88da25147afaf903f5cd01a1, type: 2}
   - cue: Victory
     track: {fileID: 11400000, guid: 5692118d88da25147afaf903f5cd01a1, type: 2}
+  - cue: Test
+    track: {fileID: 11400000, guid: 9956196a665fda5449e9a4fc336bea8f, type: 2}

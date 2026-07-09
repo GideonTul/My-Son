@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 204684d18ed1d844f80a71b0824d8bc0, type: 3}
-  m_Name: ErlkingPianoSoft
+  m_Name: Test
   m_EditorClassIdentifier: YourStudio.AudioSystem.Runtime::MusicTrack
-  introClip: {fileID: 8300000, guid: 0a6de1ea3e152644a9f042fcfff16423, type: 3}
-  loopClip: {fileID: 8300000, guid: c9cd6ca2fa673bf4b9e401bc97f1f556, type: 3}
+  introClip: {fileID: 0}
+  loopClip: {fileID: 8300000, guid: 15723b78ecaf2f849aba153bdfe47d8d, type: 3}
+  introToLoopFadeTime: 0.1

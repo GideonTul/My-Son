@@ -1817,7 +1817,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Menu
   pd: {fileID: 862828786}
   fade: {fileID: 862828781}
-  musicTrack: {fileID: 0}
   mainMenu: {fileID: 1040511995}
   settingsMenu: {fileID: 12905220}
 --- !u!1001 &1307807425
@@ -1923,7 +1922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: YourStudio.AudioSystem.Runtime::SceneMusic
   cue: MainMenu
   volume: 1
-  fadeTime: 0.11
+  fadeTime: 0.001
 --- !u!1 &1461307950
 GameObject:
   m_ObjectHideFlags: 0

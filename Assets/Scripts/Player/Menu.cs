@@ -8,7 +8,6 @@ public class Menu : MonoBehaviour
     public PlayableDirector pd;
     public GameObject fade;
 
-    public MusicTrack musicTrack;
     public GameObject mainMenu;
     public GameObject settingsMenu;
     private bool isPaused = false;
