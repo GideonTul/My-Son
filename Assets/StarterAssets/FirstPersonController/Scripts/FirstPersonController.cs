@@ -1,8 +1,7 @@
-﻿using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 #endif
 
@@ -14,9 +13,6 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
-		[Header("Music")]
-		[AudioCue] [SerializeField] private string startMusic;
-
 		[Header("Pause")]
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject settingsMenu;
@@ -147,7 +143,6 @@ namespace StarterAssets
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
- 			if (startMusic != null) AudioManager.Instance.PlayMusic(startMusic, 2f, 0.2f);
 			Time.timeScale = 1f;
             UnityEngine.Cursor.visible = false;
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -174,17 +169,7 @@ namespace StarterAssets
             }
         }
 
-        public void OnMissionFinished(object sender, bool success)
-        {
-			if (!success)
-			{
-				Debug.Log("Mission failed for some reason");
-				return;
-			}
-            GetComponent<NoiseEvent>().enabled = false;
-            Time.timeScale = 1f;
 
-        }
         private void Update()
 		{
             if (_input.pause != _paused)
@@ -215,6 +200,17 @@ namespace StarterAssets
             CameraRotation();
 		}
 
+        public void OnMissionFinished(object sender, bool success)
+        {
+            if (!success)
+            {
+                Debug.Log("Mission failed for some reason");
+                return;
+            }
+            GetComponent<NoiseEvent>().enabled = false;
+            Time.timeScale = 1f;
+
+        }
         private void HandleInteraction()
         {
             if (!_input.interact)
@@ -468,7 +464,7 @@ namespace StarterAssets
 		}
         public void QuitButton()
 		{
-            _paused = false;
+			ResumeGame();
 
             Time.timeScale = 1f;
 
@@ -482,7 +478,6 @@ namespace StarterAssets
                 settingsMenu.SetActive(false);
             }
 
-            AudioManager.Instance.PlayMusic(mainTheme, 2f, 1f);
 			Quit();
 		}
 		public void Quit()

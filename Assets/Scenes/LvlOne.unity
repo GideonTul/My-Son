@@ -2951,7 +2951,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 925004018}
     m_Modifications:
     - target: {fileID: 8626024489083486841, guid: b4e3f8b6ce745f943bb5fa3a3e29de9d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2971,7 +2971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626024489083486841, guid: b4e3f8b6ce745f943bb5fa3a3e29de9d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8626024489083486841, guid: b4e3f8b6ce745f943bb5fa3a3e29de9d, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2979,7 +2979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8626024489083486841, guid: b4e3f8b6ce745f943bb5fa3a3e29de9d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8626024489083486841, guid: b4e3f8b6ce745f943bb5fa3a3e29de9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5197,6 +5197,7 @@ Transform:
   - {fileID: 1988711113}
   - {fileID: 892322755}
   - {fileID: 1240484596}
+  - {fileID: 414520067}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &929701741
@@ -6381,6 +6382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb71c68b809ee44392d3de68f897f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationFootstepProxy
+--- !u!95 &1178002056 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3606573191198943615, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+  m_PrefabInstance: {fileID: 1482111731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1187279427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7380,6 +7386,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1178002056}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: atkSound
       value: 
       objectReference: {fileID: 8300000, guid: 093a5dc60018d476791de718279859f3, type: 3}
@@ -7440,6 +7450,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: cc936bd0f1116c74fa06a8677c6eba43, type: 3}
     - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: footsteps.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: normalMusic.loopClip
       value: 
       objectReference: {fileID: 8300000, guid: 6fa88048be821f3479ae000b744de2e4, type: 3}
@@ -7451,6 +7465,22 @@ PrefabInstance:
       propertyPath: normalMusic.introClip
       value: 
       objectReference: {fileID: 8300000, guid: 6fa88048be821f3479ae000b744de2e4, type: 3}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: aggroSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'footsteps.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ccfb18eb53b37384b9632ae00f725881, type: 3}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'footsteps.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d65afb5fe7bb7e41a03b001f5acfbde, type: 3}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'footsteps.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 54cd8769272b7ca4c9a1386d106f621d, type: 3}
     - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 4
@@ -7467,6 +7497,14 @@ PrefabInstance:
       propertyPath: footstepAudio.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'aggroSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 98e09261f3a63460d93dda8792af907d, type: 3}
+    - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
+      propertyPath: 'aggroSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a42266be58db4c518b5d4e47cc0f780, type: 3}
     - target: {fileID: 3792806522902574688, guid: 016fca9e91422ea44962e59b671827f3, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
       value: 
@@ -7639,6 +7677,52 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1540294838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1540294840}
+  - component: {fileID: 1540294839}
+  m_Layer: 0
+  m_Name: MusicController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1540294839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540294838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a2c255c4c8ce34d967c431ae79f7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicController
+  chaseMusic: Chase
+  normalMusic: Ambient
+--- !u!4 &1540294840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540294838}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -102.73605, y: 8.869339, z: -132.32472}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1932780292}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1564010115 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8776228631466838411, guid: 8b15f7506afadc54f8e1fa9e245220a5, type: 3}
@@ -8057,6 +8141,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4171076710219625631, guid: e87d2eb8a4d8b7048a52cfab4498d0eb, type: 3}
   m_PrefabInstance: {fileID: 1634888883}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1653353804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1653353805}
+  - component: {fileID: 1653353806}
+  m_Layer: 0
+  m_Name: PlayerDeathController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1653353805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653353804}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 117.04224, y: 2.5580597, z: 167.98016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1932780292}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1653353806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653353804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779f71307bd93d541a6230b4565ccfcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathController
+  player: {fileID: 1335442646}
 --- !u!1 &1660922486
 GameObject:
   m_ObjectHideFlags: 0
@@ -10372,6 +10501,8 @@ Transform:
   - {fileID: 1595294386}
   - {fileID: 715033419}
   - {fileID: 589285754}
+  - {fileID: 1653353805}
+  - {fileID: 1540294840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1966699216
@@ -12028,8 +12159,16 @@ PrefabInstance:
       value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 7627715143344121072, guid: 8b15f7506afadc54f8e1fa9e245220a5, type: 3}
+      propertyPath: JumpHeight
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627715143344121072, guid: 8b15f7506afadc54f8e1fa9e245220a5, type: 3}
       propertyPath: startMusic
       value: Ambient
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627715143344121072, guid: 8b15f7506afadc54f8e1fa9e245220a5, type: 3}
+      propertyPath: JumpTimeout
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 7627715143344121072, guid: 8b15f7506afadc54f8e1fa9e245220a5, type: 3}
       propertyPath: startMusic.loopClip
@@ -12256,4 +12395,3 @@ SceneRoots:
   - {fileID: 18498461}
   - {fileID: 1975504086}
   - {fileID: 2043830776}
-  - {fileID: 414520066}

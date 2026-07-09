@@ -6,14 +6,14 @@ public class SafeZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            EnemyAI.PlayerReachedSafeZone();
+            GameEvents.OnPlayerSafeChanged?.Invoke(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            EnemyAI.PlayerLeftSafeZone();
+            GameEvents.OnPlayerSafeChanged?.Invoke(false);
         }
     }
 }
