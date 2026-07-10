@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using AudioSystem;
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -16,13 +18,12 @@ namespace StarterAssets
 		[Header("Pause")]
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] private GameObject settingsMenu;
-        [AudioCue][SerializeField] private string mainTheme;
 
         private bool _paused = false;
 
 
 		[Header("Footsteps")]
-		[SerializeField] private AudioClip[] footstepAudio;
+		[SerializeField] private SoundData footstepAudio;
         [SerializeField] private float stepDistance = 2f;
 		[SerializeField] private float sprintNoiseRadius = 45f;
         [SerializeField] private float walkNoiseRadius = 35f;
@@ -402,8 +403,8 @@ namespace StarterAssets
             {
                 lastFootstepPosition = transform.position;
 
-                AudioClip clip = footstepAudio[Random.Range(0, footstepAudio.Length)];
-                AudioManager.Instance.PlaySFX(clip, 0.12f);
+                
+                AudioManager.Instance.Play(footstepAudio);
             }
         }
 

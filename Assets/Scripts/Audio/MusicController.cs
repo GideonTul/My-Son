@@ -1,12 +1,10 @@
+using AudioSystem;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    [Header("Cue List")]
-    [AudioCue]
-    [SerializeField] private string chaseMusic;
-    [AudioCue]
-    [SerializeField] private string normalMusic;
+    [SerializeField] private SoundData chaseMusic;
+    [SerializeField] private SoundData normalMusic;
 
     private void Start()
     {
@@ -29,15 +27,15 @@ public class MusicController : MonoBehaviour
 
     private void StartChaseMusic()
     {
-        AudioManager.Instance.PlayMusic(chaseMusic, 0.1f, 0.4f);
+        MusicManager.Instance.Play(chaseMusic, 0.1f);
     }
 
     private void StartNormalMusic()
     {
-        AudioManager.Instance.PlayMusic(normalMusic, 2f, 0.2f);
+        MusicManager.Instance.Play(normalMusic, 2f);
     }
     private void StartNormalMusic(bool safe)
     {
-        if (safe) AudioManager.Instance.PlayMusic(normalMusic, 2f, 0.2f);
+        if (safe) MusicManager.Instance.Play(normalMusic, 2f);
     }
 }

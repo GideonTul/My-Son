@@ -1,3 +1,4 @@
+using AudioSystem;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
@@ -17,7 +18,7 @@ public class NoiseEvent : MonoBehaviour
     public float reactionTime = 3f;
 
     [Header("Audio")]
-    public AudioClip noiseClip;
+    public SoundData noiseClip;
 
     [Header("UI")]
     public GameObject promptUI;
@@ -76,7 +77,7 @@ public class NoiseEvent : MonoBehaviour
     {
         eventActive = true;
 
-        AudioManager.Instance.PlaySFX(noiseClip, 0.2f);
+        AudioManager.Instance.PlayAt(noiseClip, transform.position);
 
         promptUI.SetActive(true);
         promptText.text = $"Press {stopKey} to silence";
@@ -104,7 +105,7 @@ public class NoiseEvent : MonoBehaviour
 
     void EndEvent(bool failed)
     {
-        if (failed == false) AudioManager.Instance.StopSFX();
+        //if (failed == false) AudioManager.Instance.Stop();
 
         promptUI.SetActive(false);
 

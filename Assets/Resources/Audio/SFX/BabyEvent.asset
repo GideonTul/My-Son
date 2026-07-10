@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a3d03aff0e06bd49a088cddf8d6b206, type: 3}
-  m_Name: Chase
+  m_Name: BabyEvent
   m_EditorClassIdentifier: Assembly-CSharp::AudioSystem.SoundData
   clips:
-  - {fileID: 8300000, guid: da163e0f47b646d4e9f22c360bed099e, type: 3}
-  category: 0
-  volume: 0.5
+  - {fileID: 8300000, guid: 65c23adb5846d5d459c0be91c826c738, type: 3}
+  category: 1
+  volume: 0.2
   volumeVariance: 0
   pitch: 1
   pitchVariance: 0

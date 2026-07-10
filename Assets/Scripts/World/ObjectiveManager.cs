@@ -1,3 +1,4 @@
+using AudioSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] private int numOfObjectives;
     private static int objectivesComplete = 0;
     [SerializeField] private GameObject finalObj;
-    [AudioCue] [SerializeField] private string FinalSong;
+    [SerializeField] private SoundData FinalSong;
     [SerializeField] private PlayableDirector FinalCutscene;
 
     [TextArea] public string text;
@@ -54,7 +55,7 @@ public class ObjectiveManager : MonoBehaviour
     {
         if (FinalSong != null)
         {
-            AudioManager.Instance.PlayMusic(FinalSong, 2f, 1f);
+            MusicManager.Instance.Play(FinalSong, 3f);
         }
         if (FinalCutscene != null)
         {

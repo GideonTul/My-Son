@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a3d03aff0e06bd49a088cddf8d6b206, type: 3}
-  m_Name: Chase
+  m_Name: MonsterFootsteps
   m_EditorClassIdentifier: Assembly-CSharp::AudioSystem.SoundData
   clips:
-  - {fileID: 8300000, guid: da163e0f47b646d4e9f22c360bed099e, type: 3}
-  category: 0
-  volume: 0.5
+  - {fileID: 8300000, guid: 09226248e570c904a900ec2ecb767a68, type: 3}
+  - {fileID: 8300000, guid: 7d65afb5fe7bb7e41a03b001f5acfbde, type: 3}
+  - {fileID: 8300000, guid: 54cd8769272b7ca4c9a1386d106f621d, type: 3}
+  category: 1
+  volume: 1
   volumeVariance: 0
   pitch: 1
   pitchVariance: 0
   loop: 0
-  spatialBlend: 0
+  spatialBlend: 1
   minDistance: 1
   maxDistance: 25
   cooldown: 0

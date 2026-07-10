@@ -1,16 +1,17 @@
+using AudioSystem;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BDayJumpscare : MonoBehaviour
 {
-    [SerializeField] private AudioClip jumpscare;
+    [SerializeField] private SoundData jumpscare;
     [SerializeField] private List<HeadLook> objectsToLook;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            AudioManager.Instance.PlaySFX(jumpscare, 0.3f);
+            AudioManager.Instance.Play(jumpscare);
             foreach (HeadLook obj in objectsToLook)
             {
                 
