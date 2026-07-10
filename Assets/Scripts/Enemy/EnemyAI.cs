@@ -62,7 +62,7 @@ public class EnemyAI : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player == null) { Debug.Log("EnemyAI could not find player."); }
+        if (player == null) { Debug.Log("EnemyAI could not find player."); return; }
 
         playerController = player.GetComponent<FirstPersonController>();
     }
