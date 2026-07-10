@@ -16,28 +16,28 @@ public class AudioSettingsUI : MonoBehaviour
         voiceSlider.value = PlayerPrefs.GetFloat("VoiceVolume", 1f);
 
         // Apply immediately
-        AudioManager.Instance.SetMusicVolume(musicSlider.value);
-        AudioManager.Instance.SetSFXVolume(sfxSlider.value);
-        AudioManager.Instance.SetVoiceVolume(voiceSlider.value);
+        //AudioManager.Instance.SetMusicVolume(musicSlider.value);
+        //AudioManager.Instance.SetSFXVolume(sfxSlider.value);
+        //AudioManager.Instance.SetVoiceVolume(voiceSlider.value);
 
         // Hook listeners
-        musicSlider.onValueChanged.AddListener(OnMusicChanged);
-        sfxSlider.onValueChanged.AddListener(OnSFXChanged);
-        voiceSlider.onValueChanged.AddListener(OnVoiceChanged);
+        //musicSlider.onValueChanged.AddListener(OnMusicChanged);
+        //sfxSlider.onValueChanged.AddListener(OnSFXChanged);
+        //voiceSlider.onValueChanged.AddListener(OnVoiceChanged);
     }
 
-    private void OnMusicChanged(float value)
-    {
-        AudioManager.Instance.SetMusicVolume(value);
-    }
+    //private void OnMusicChanged(float value)
+    //{
+    //    AudioManager.Instance.SetMusicVolume(value);
+    //}
 
-    private void OnSFXChanged(float value)
-    {
-        AudioManager.Instance.SetSFXVolume(value);
-    }
+    //private void OnSFXChanged(float value)
+    //{
+    //    AudioManager.Instance.SetSFXVolume(value);
+    //}
 
-    private void OnVoiceChanged(float value)
-    {
-        AudioManager.Instance.SetVoiceVolume(value);
-    }
+    //private void OnVoiceChanged(float value)
+    //{
+    //    AudioManager.Instance.SetVoiceVolume(value);
+    //}
 }

@@ -1,3 +1,4 @@
+using AudioSystem;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
@@ -31,8 +32,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private PlayableDirector deathCutscene;
 
     [Header("Audio")]
-    [SerializeField] private AudioClip[] aggroSounds;
-    [SerializeField] private AudioClip[] footsteps;
+    [SerializeField] private SoundData aggroSounds;
+    [SerializeField] private SoundData footsteps;
 
 
 
@@ -61,7 +62,7 @@ public class EnemyAI : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player == null) { Debug.Log("EnemyAI could not find player."); }
+        if (player == null) { Debug.Log("EnemyAI could not find player."); return; }
 
         playerController = player.GetComponent<FirstPersonController>();
     }
@@ -146,7 +147,7 @@ public class EnemyAI : MonoBehaviour
 
         agent.speed = chaseSpeed;
 
-        AudioManager.Instance.PlaySFX(aggroSounds[Random.Range(0, aggroSounds.Length)], 0.2f);
+        AudioManager.Instance.PlayAttached(aggroSounds, transform);
 
         GameEvents.OnEnemyStartedChasing?.Invoke();
     }
@@ -249,6 +250,7 @@ public class EnemyAI : MonoBehaviour
         agent.ResetPath();
 
         GameEvents.OnPlayerKilled?.Invoke(deathCutscene);
+        //deathCutscene.Play();
     }
     private void HandlePlayerRespawned()
     {
@@ -274,12 +276,7 @@ public class EnemyAI : MonoBehaviour
     }
     public void PlayFootstep()
     {
-        if (footsteps.Length == 0)
-            return;
 
-        AudioClip clip =
-            footsteps[Random.Range(0, footsteps.Length)];
-
-        footstepSource.PlayOneShot(clip, 1f);
+        AudioManager.Instance.PlayAttached(footsteps, transform);
     }
 }

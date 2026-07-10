@@ -41,9 +41,11 @@ public class PlayerDeathController : MonoBehaviour
 
         playerController.enabled = false;
         playerNoiseEvent.enabled = false;
-
+        
         activeCutscene = cutscene;
         activeCutscene.stopped += HandleCutsceneStopped;
+
+        Debug.Log($"TimeScale: {Time.timeScale}");
         activeCutscene.Play();
 
         GameManager.Instance.RespawnPlayer(player);

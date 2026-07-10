@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer(GameObject player)
     {
+        Debug.Log("RespawnPlayer called");
+
         CharacterController cc = player.GetComponent<CharacterController>();
 
         if (cc != null)
@@ -28,5 +30,6 @@ public class GameManager : MonoBehaviour
 
         if (cc != null)
             cc.enabled = true;
+        Debug.Log("RespawnPlayer finished");
     }
 }
